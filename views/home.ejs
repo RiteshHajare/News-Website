@@ -1,0 +1,121 @@
+<%- include("partials/header"); -%>
+<div class="trial">
+  <div class="div1">
+    <audio id="myAudio" src="audio/Corporate.mp3" preload="auto">
+</audio>
+    <h1 class="website-name" onclick="togglePlay()">news Website </h1>
+  </div>
+
+</div>
+<nav id="naav" class="nav navbar navbar-expand-lg navbar-dark ">
+
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
+        <a class="nav-link active" href="/about">About</a>
+        <a class="nav-link active" href="/contact">Contact</a>
+        <form class="" action="/logout" method="post">
+          <%- Logout %>
+        </form>
+        <%- Login %>
+        <%- Register %>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <div class="container1 container-fluid">
+<% for (var i = 0; i < 10; i++) {%>
+  <div class="container-fluid">
+      <div class="row">
+          <div class=" col-lg-3">
+              <div class="card">
+                  <div class="card-body">
+                    <% var m=i+10; %>
+                      <h5 class="card-title"><a id="linkk"  href="/news/+<%=newsData.articles[m].title%>"><%=newsData.articles[m].title%></a></h5>
+                      <%  var d1 = new Date(newsData.articles[m].publishedAt);%>
+                        <small>Published on <%=d1.toLocaleDateString()%> </small><br>
+                        <small><%=d1.toLocaleTimeString("en-US")%> </small>
+                  </div>
+              </div>
+              </div>
+          <div class="col-lg-6">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title"><a id="linkk"  href="/news/+<%=newsData.articles[i].title%>"><%=newsData.articles[i].title%></a></h5>
+                      <img id="imgg" class="images" src="<%=newsData.articles[i].urlToImage%>" alt="image"+i>
+                      <div class="data">
+                        <p class="card-text"><%=newsData.articles[i].description%></p>
+                      <%  var d2 = new Date(newsData.articles[i].publishedAt);%>
+                        <small>Published on <%=d2.toLocaleDateString()%> </small><br>
+                        <small><%=d2.toLocaleTimeString('en-US')%> </small>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3">
+              <div class="card">
+                  <div class="card-body">
+                    <%  var n=i+20;%>
+                      <h5 class="card-title"><a id="linkk"  href="/news/+<%=newsData.articles[n].title%>"><%=newsData.articles[n].title%></a></h5>
+                      <%  var d3 = new Date(newsData.articles[n].publishedAt);%>
+                        <small>Published on <%= d3.toLocaleDateString()%> </small><br>
+                        <small> <%=d3.toLocaleTimeString('en-US')%> </small>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+<%}%>
+</div>
+
+<div class="commentSection" style="background-color: #d94125;">
+  <div class="container  py-5 text-dark ">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-6">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="d-flex flex-start w-100">
+              <img class="rounded-circle shadow-1-strong me-3"
+                src="https://www.thehindu.com/sci-tech/technology/internet/article17759222.ece/alternates/FREE_1200/02th-egg-person" alt="avatar" width="65"
+                height="65" />
+              <div class="w-100">
+                <h5>If you have any Creative Idea for this website!  then please share it 🤗  </h5>
+
+                <form class="" action="/comment" method="post">
+                  <div class="form-outline">
+                    <textarea class="form-control" name="comment" id="textAreaExample" rows="4"></textarea>
+                    <label class="form-label" for="textAreaExample">What is your view?</label>
+                  </div>
+                  <div class="d-flex justify-content-between mt-3">
+                    <button type="submit" class="sendbtn btn btn-danger">
+                      Send <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                    </button>
+                    </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<%- include("partials/footer"); -%>
